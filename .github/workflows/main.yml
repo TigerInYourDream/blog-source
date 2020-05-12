@@ -1,0 +1,47 @@
+name: Blog CI/CD
+
+on:
+  push:
+    branches: 
+      - master
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  blog-cicd:
+    name: Hexo blog build & deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout codes
+      uses: actions/checkout@v2
+
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install dependencies
+      run: |
+        npm install hexo-cli  -g
+        npm install
+    - name: Generate files
+      run: hexo generate
+
+    - name: Deploy blog
+      run: |
+        git clone "https://${{ secrets.GH_REF }}" deploy_git
+        mv ./deploy_git/.git ./public/
+        cd ./public
+        git config user.name "TigerInYourDream"
+        git config user.email "zyzzz0928@gmail.com"
+        git add .
+        git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
+        git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@${{ secrets.GH_REF }}" master:master
