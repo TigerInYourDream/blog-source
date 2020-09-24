@@ -23,7 +23,4 @@ type: motto
 **2019-03-26 16:52:00**
 他山之石可以攻玉，看不懂web项目的的组织方式去读读Rails的文档，一下就清楚了。这就是知识的迁移性。
 
-<!-- Get UTF-8 Size (ANSI C) -->
-<!-- Begin -->
-<script src="https://gist.github.com/8771d4a0ce49b8c3c1f075fb44a3a1fc#file-oneword-md"></script>
-<!-- End -->
+{% gist 8771d4a0ce49b8c3c1f075fb44a3a1fc [OneWord.md] %}

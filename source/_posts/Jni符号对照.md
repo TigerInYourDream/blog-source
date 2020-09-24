@@ -1,11 +1,12 @@
 ---
 title: Jni符号对照
-date: 2020-07-10 10:16:48
 categories:
   - 技术笔记
 tags:
   - jni
   - 符号对照
+abbrlink: 55704
+date: 2020-07-10 10:16:48
 ---
 
 # Jni符号表
