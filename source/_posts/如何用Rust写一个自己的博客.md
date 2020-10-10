@@ -10,6 +10,7 @@ date: 2019-04-06 08:53:40
 ---
 
 最近给自己定下一个任务，用rust写一个可以运行的项目，最终定下的任务就如标题所示，搭建一个可以运行的博客，具备基本的登录功能，可以对自己的文章进行增删改查功能。目标定下，接下来开始行动。代码在此
+<!--more-->
 
 Actix_blog	https://github.com/TigerInYourDream/actix_blog_example
 

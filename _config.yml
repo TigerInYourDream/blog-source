@@ -8,7 +8,7 @@ subtitle:
 description: 每一篇文章都是一种进步，每一句感慨都是一次思考
 keywords:
 author: TigerInYourDream
-language: zh-Hans
+language: zh-CN
 timezone:
 
 # URL
@@ -33,7 +33,6 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -44,6 +43,9 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
+  # New option
+external_link:
+  enable: true
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -82,3 +84,12 @@ deploy:
   type: git
   repository: https://github.com/TigerInYourDream/TigerInYourDream.github.io.git
   branch: master
+
+# with npm install hexo-excerpt --save
+excerpt:
+depth: 1
+excerpt_excludes: []
+more_excludes: []
+hideWholePostExcerpts: true
+
+

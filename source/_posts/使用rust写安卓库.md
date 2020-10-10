@@ -13,6 +13,7 @@ date: 2020-03-31 16:33:36
 # 使用rust写安卓库
 
 rust写安卓库也是rust的一个重要应用方向，之前用来写安卓的库的语言大多数都是c/c++。本文不讨论两种（或者叫两类）语言的优劣，只说明如何搭建一个rust-android相互交互的环境。
+<!--more-->
 
 Android使用Java语言，java与c/c++交互使用jni技术。Android与rust交互也使用jni。在这里我们使用[jni-rs](https://docs.rs/jni/0.16.0/jni/)库。在使用rust写安卓库之前我们先简化一下问题。先用jni-rs编写一个可以被java调用的库。这个过程可以参考jni-rs的代码说明。但我自己使用的过程中稍微对文档进行了说明。
 

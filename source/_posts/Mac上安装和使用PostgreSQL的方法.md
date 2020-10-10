@@ -10,9 +10,10 @@ date: 2019-03-27 16:21:13
 ---
 
 最近需要使用actix-web来搭建一个web程序，这篇文章是关于搭建web程序的准备工作，
+<!--more-->
 如何在Mac上安装PostgreSQL
 1. 因为本机上已经安装了homebrew 故而使用home brew
-  `brew install postgresql`
+    `brew install postgresql`
 
 2. 安装的位置如下
 

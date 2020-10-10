@@ -16,6 +16,7 @@ date: 2020-07-10 10:16:48
 [《使用rust写安卓库》](https://imzy.vip/posts/27183/) 
 
 的延续。之前的文章主题是如何利用rust-jni库提供便于java使用的rust jni代码。本文在之前的基础上继续提供后续关于jni符号，或者type的说明。
+<!--more-->
 
 ## 起因
 
