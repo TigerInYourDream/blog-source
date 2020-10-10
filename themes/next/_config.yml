@@ -409,7 +409,7 @@ github_banner:
 # ---------------------------------------------------------------
 
 font:
-  enable: false
+  enable: ture
 
   # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
   host:
@@ -425,10 +425,10 @@ font:
     family: Lato
     size:
 
-  # Font settings for site title (.site-title).
+ # Font settings for site title (.site-title).
   title:
     external: true
-    family:
+    family: Pacifico
     size:
 
   # Font settings for headlines (<h1> to <h6>).
