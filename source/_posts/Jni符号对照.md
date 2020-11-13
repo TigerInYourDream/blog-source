@@ -57,7 +57,7 @@ pub extern "system" fn Java_JniApi_hello(env: JNIEnv, _: JClass, str: JString) -
 
 ## type到底是什么
 
-本文要解决的问题：**type是什么，这里的type该怎么填充？**type的填充主要看java端的规定。我们不从这一头看，我们回头去看java端。下面展示一个使用java -h命令之后我们得到的java头文件。一般来说，我们不需要java头文件，但是我们要写jni，头文件是必须的。
+本文要解决的问题：**type是什么，这里的type该怎么填充？**type的填充主要看java端的规定。我们不从这一头看，我们回头去看java端。下面展示一个使用javac -h命令之后我们得到的java头文件。一般来说，我们不需要java头文件，但是我们要写jni，头文件是必须的。
 
 ```java
 class HelloWorld {

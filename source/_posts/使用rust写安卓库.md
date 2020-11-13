@@ -40,7 +40,7 @@ class HelloWorld {
 
 代码的第一行是将来rust库需要提供的方法，这里相当于提供一个接口，定义了函数名，参数和返回值。静态代码块是加载库用的，需要在实际调用之前加载。动态库的名称为 ”mylib“。现在是没有的。之后就是常规的调用。这里的调用是静态调用。
 
-现在这段java代码无法运行，因为我们并没有”mylib“这个库。hello methon也需要在rust中实现。我们暂时不着急创建rust lib。我们在目录下使用java -h命令
+现在这段java代码无法运行，因为我们并没有”mylib“这个库。hello methon也需要在rust中实现。我们暂时不着急创建rust lib。我们在目录下使用javac -h命令
 
 ```
 javac -h . HelloWorld.java
