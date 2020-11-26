@@ -125,7 +125,8 @@ menu:
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
   一言: /motto || camera
-
+  友链: /friends || meh-o
+ 
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
