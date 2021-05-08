@@ -997,7 +997,3 @@ vendors:
 css: css
 js: js
 images: images
-
-#fancybox3
-fancybox: true
-
