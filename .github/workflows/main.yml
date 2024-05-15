@@ -43,8 +43,8 @@ jobs:
           echo "build blog successful"
       - name: Deploy Blog # 设置 git 信息并推送静态博客文件
         run: |
-          git config user.name "TigerInYourDream"
-          git config user.email "zyzzz0928@gmail.com"
+          git config --global user.name "TigerInYourDream"
+          git config --global user.email "zyzzz0928@gmail.com"
           hexo deploy
 
       - run: echo "Deploy Successful!"
