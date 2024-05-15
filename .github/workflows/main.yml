@@ -39,7 +39,7 @@ jobs:
           hexo clean
           hexo g
           echo "build blog successful"
-      - name: Deploy DoubleAm's Blog # 设置 git 信息并推送静态博客文件
+      - name: Deploy Blog # 设置 git 信息并推送静态博客文件
         run: |
           git config user.name "TigerInYourDream"
           git config user.email "zyzzz0928@gmail.com"
