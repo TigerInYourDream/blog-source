@@ -82,7 +82,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:TigerInYourDream/TigerInYourDream.github.io.git
+  repository: https://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@github.com:TigerInYourDream/TigerInYourDream.github.io.git
   branch: master
 
 # with npm install hexo-excerpt --save
