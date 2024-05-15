@@ -28,6 +28,8 @@ jobs:
             ${{ runner.os }}-
       - name: Init Node.js # 安装源代码所需插件
         run: |
+          npm cache clean --force
+          npm config set strict-ssl false
           npm install
           echo "init node successful"
       - name: Install Hexo-cli # 安装 Hexo
