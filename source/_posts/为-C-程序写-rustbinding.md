@@ -1,5 +1,5 @@
 ---
-c++源
+
 title: 为 C++程序写 rustbinding
 date: 2024-08-12 23:24:49
 categories:
