@@ -73,6 +73,10 @@ void MyNamespace::MyClass::myMethod() {
 //     obj.myMethod();
 //     return 0;
 // }
+
+```
+
+```c++
 #ifndef MYCLASS_HPP
 #define MYCLASS_HPP
 namespace MyNamespace {
@@ -88,15 +92,15 @@ namespace MyNamespace {
 
 c++源文件和头文件在此。一个非常简单的代码，为了在后续使用 c风格的 wrapper。特意使用了 namespace class这些 c没有的特性。大致解释下代码 分别有构造函数，析构函数（类似与 rust的 Drop）和一个成员函数（或者这个称为方法）。
 
-\> clang++ -c -fPIC MyClass.cpp -o MyClass.o
-
-clang++ -dynamiclib -o libMyClass.dylib MyClass.o
-
--dynamiclib 选项表示生成动态库。
-
--o libMyClass.dylib 指定输出文件的名称为 libMyClass.dylib。
-
-\> 
+> clang++ -c -fPIC MyClass.cpp -o MyClass.o
+>
+> clang++ -dynamiclib -o libMyClass.dylib MyClass.o
+>
+> -dynamiclib 选项表示生成动态库。
+>
+> -o libMyClass.dylib 指定输出文件的名称为 libMyClass.dylib。
+>
+> 
 
 c++的二进制产物生成分两步 
 
@@ -129,19 +133,23 @@ void MyClass_myMethod(MyClassHandle handle);
 
 c的头文件如上所示，关键是使用不透明指针
 
-\> 不透明指针(Opaque Pointer)是一种特殊类型的指针,它隐藏了所指向的具体数据类型的详细信息。不透明指针只提供了指针的操作,而不暴露指针所指向的数据的类型和结构。
+> [!IMPORTANT]
+>
+>  不透明指针(Opaque Pointer)是一种特殊类型的指针,它隐藏了所指向的具体数据类型的详细信息。不透明指针只提供了指针的操作,而不暴露指针所指向的数据的类型和结构。
+>
+>  
+>
+>  typedef struct MyClassOpaque MyClassOpaque; 是一种特别的写法 实质相当于 对 struct MyClassQpaque 的别名，以后用MyClassOpaque 不用带 Struct关键字。
+>
+>  
+>
+>  typedef MyClassOpaque* MyClassHandle;
+>
+> 直接定义不透明指针
+>
+> 
 
-\> 
 
-\> typedef struct MyClassOpaque MyClassOpaque; 是一种特别的写法 实质相当于 对 struct MyClassQpaque 的别名，以后用MyClassOpaque 不用带 Struct关键字。
-
-\> 
-
-\> typedef MyClassOpaque* MyClassHandle;
-
-直接定义不透明指针
-
-\> 
 
 有了这个C风格的头还不够，还需要一份实现代码
 
