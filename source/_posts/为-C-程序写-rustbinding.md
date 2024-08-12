@@ -17,7 +17,7 @@ tags:
 
 在代码的世界中，还是 c和 cpp站绝大多数，现在提一个比较常见的需求：提供一个 c++的程序，最终需要再 rust中调用 c++程序提供的接口。
 
-一般来说有两个路
+一般来说有两个方法
 
 1. 直接使用 cxx autocxx为 rust代码生成一份 unsafe的代码，然后直接调用
 2. 第二种方法比较路径稍长，先针对 c++代码的 header 写一份 c风格的头文件cwrapper，然后针对 c的头文件写一份 c头文件的实现。接下来编译自己的cwrapper，生成一份新的动态库。接下来使用 bindgen 根据 cwrapper生成一份 unsafe rust。最后在 rust代码中调用。
@@ -137,9 +137,9 @@ void MyClass_myMethod(MyClassHandle handle);
 
 c的头文件如上所示，关键是使用不透明指针
 
-> [!IMPORTANT]
->
->  不透明指针(Opaque Pointer)是一种特殊类型的指针,它隐藏了所指向的具体数据类型的详细信息。不透明指针只提供了指针的操作,而不暴露指针所指向的数据的类型和结构。
+
+
+> 不透明指针(Opaque Pointer)是一种特殊类型的指针,它隐藏了所指向的具体数据类型的详细信息。不透明指针只提供了指针的操作,而不暴露指针所指向的数据的类型和结构。
 >
 >  
 >
@@ -150,8 +150,6 @@ c的头文件如上所示，关键是使用不透明指针
 >  typedef MyClassOpaque* MyClassHandle;
 >
 > 直接定义不透明指针
->
-> 
 
 
 
