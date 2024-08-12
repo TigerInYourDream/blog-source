@@ -1,4 +1,5 @@
 ---
+c++源
 title: 为 C++程序写 rustbinding
 date: 2024-08-12 23:24:49
 categories:
@@ -74,9 +75,12 @@ void MyNamespace::MyClass::myMethod() {
 //     return 0;
 // }
 
+
 ```
 
 ```c++
+//下面的是头文件
+
 #ifndef MYCLASS_HPP
 #define MYCLASS_HPP
 namespace MyNamespace {
@@ -96,9 +100,9 @@ c++源文件和头文件在此。一个非常简单的代码，为了在后续�
 >
 > clang++ -dynamiclib -o libMyClass.dylib MyClass.o
 >
-> -dynamiclib 选项表示生成动态库。
+> ​	-dynamiclib 选项表示生成动态库。
 >
-> -o libMyClass.dylib 指定输出文件的名称为 libMyClass.dylib。
+> ​	-o libMyClass.dylib 指定输出文件的名称为 libMyClass.dylib。
 >
 > 
 
@@ -264,4 +268,4 @@ linux 则是设定LD_LIBRARY_PATH
 
 然后就可以执行了
 
-![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/img/Xnip%20Helper%202024-08-12%2023.19.50.png)
+![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/img/821723477517_.pic.jpg)
