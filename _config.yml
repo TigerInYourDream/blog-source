@@ -48,7 +48,9 @@ deploy:
   type: git
   repo: https://github.com/TigerInYourDream/blog-source.git
   branch: master
-  message: 'Site updated: {{ now("YYYY-MM-DD HH:mm:ss") }}'
+  token: ${{ secrets.GITHUB_TOKEN }}
+  name: TigerInYourDream
+  email: zyzzz0928@gmail.com
 excerpt: null
 depth: 1
 excerpt_excludes: []

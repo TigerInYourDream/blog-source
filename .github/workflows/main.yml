@@ -2,7 +2,7 @@ name: Blog CI/CD
 
 on:
   push:
-    branches: [source]  # 修改为只监控 source 分支
+    branches: [source]
     paths:
       - '*.json'
       - '**.yml'
@@ -40,14 +40,17 @@ jobs:
         run: |
           hexo clean
           hexo g
-          touch public/.nojekyll  # 在生成的站点目录中创建 .nojekyll 文件
+          touch public/.nojekyll
           echo "build blog successful"
+          
       - name: Deploy Blog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 显式使用 GitHub Token
-        run: |
-          git config --global user.name "TigerInYourDream"
-          git config --global user.email "zyzzz0928@gmail.com"
-          hexo deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./public
+          commit_message: "Deploy: ${{ github.event.head_commit.message }}"
+          user_name: 'TigerInYourDream'
+          user_email: 'zyzzz0928@gmail.com'
       
       - run: echo "Deploy Successful!"
