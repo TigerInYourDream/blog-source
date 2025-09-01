@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Pacifico:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"imzy.vip","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="YOLO for OpenRA本文讲如何使用 yolo 识别 openra中的物体。 什么是 yolo?实际情况是我也不懂。具体参考 https:&#x2F;&#x2F;www.ultralytics.com&#x2F;.   大概是深度学习和计算机视觉相关的库。 阅读文章的起点阅读文章的起点指的是一下两个问题  为什么要用 yolo来识别 OpenRA中的物体 在做yolo识别的时候相关的知识储备是什么样的  需要反着回答，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yolo for OpenRA">
+<meta property="og:url" content="https://imzy.vip/posts/46137/index.html">
+<meta property="og:site_name" content="TID&#39;s Blog">
+<meta property="og:description" content="YOLO for OpenRA本文讲如何使用 yolo 识别 openra中的物体。 什么是 yolo?实际情况是我也不懂。具体参考 https:&#x2F;&#x2F;www.ultralytics.com&#x2F;.   大概是深度学习和计算机视觉相关的库。 阅读文章的起点阅读文章的起点指的是一下两个问题  为什么要用 yolo来识别 OpenRA中的物体 在做yolo识别的时候相关的知识储备是什么样的  需要反着回答，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/img/Xnip%20Helper%202025-09-01%2010.31.09.png">
+<meta property="article:published_time" content="2025-09-01T10:51:58.000Z">
+<meta property="article:modified_time" content="2025-09-01T05:27:44.032Z">
+<meta property="article:author" content="TigerInYourDream">
+<meta property="article:tag" content="yolo openra">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/img/Xnip%20Helper%202025-09-01%2010.31.09.png">
+
+<link rel="canonical" href="https://imzy.vip/posts/46137/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Yolo for OpenRA | TID's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">TID's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-一言">
+
+    <a href="/motto" rel="section"><i class="fa fa-camera fa-fw"></i>一言</a>
+
+  </li>
+        <li class="menu-item menu-item-友链">
+
+    <a href="/friends" rel="section"><i class="fa fa-american-sign-language-interpreting fa-fw"></i>友链</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://imzy.vip/posts/46137/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="TigerInYourDream">
+      <meta itemprop="description" content="每一篇文章都是一种进步，每一句感慨都是一次思考">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TID's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Yolo for OpenRA
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-09-01 10:51:58 / 修改时间：05:27:44" itemprop="dateCreated datePublished" datetime="2025-09-01T10:51:58+00:00">2025-09-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="YOLO-for-OpenRA"><a href="#YOLO-for-OpenRA" class="headerlink" title="YOLO for OpenRA"></a>YOLO for OpenRA</h1><p>本文讲如何使用 yolo 识别 openra中的物体。</p>
+<h2 id="什么是-yolo"><a href="#什么是-yolo" class="headerlink" title="什么是 yolo?"></a>什么是 yolo?</h2><p>实际情况是我也不懂。具体参考 <a target="_blank" rel="noopener" href="https://www.ultralytics.com/">https://www.ultralytics.com/</a>.   大概是深度学习和计算机视觉相关的库。</p>
+<h2 id="阅读文章的起点"><a href="#阅读文章的起点" class="headerlink" title="阅读文章的起点"></a>阅读文章的起点</h2><p>阅读文章的起点指的是一下两个问题</p>
+<ul>
+<li>为什么要用 yolo来识别 OpenRA中的物体</li>
+<li>在做yolo识别的时候相关的知识储备是什么样的</li>
+</ul>
+<p>需要反着回答，知识储备是什么都不懂，一不明白什么是计算机视觉，而是不明白 python。不过不用担心，python比较简单，不会也可以看懂代码。</p>
+<p>做 yolo识别是因为最近 GOSIM2015 有一个 hackthon，组委会提供了一个魔改的 OpenRA, 可以使用 socket来和 OpenRA交互。使用 api来驱动 openra中的单位来进行建设，探索，作战。组委会的目的应该是探索 LLM的应用，Agent的开发。我看到很多参赛选手做了非常高级的 agent可以打字和 llm沟通，进行建设，探图和摧毁敌方目标。不过这种模式是类似于我对 mcp的理解，我自己的思路是把所有的 API做成 mcp的 function. 语音和 llm交互的时候，llm决定去调用哪一类的 function完成任务。我更偏好全自动作战，不要人的参与就可以完成所有的目标，所以我想引入 YOLO来识别游戏中目标，让 agent自动规划需要怎么做。</p>
+<p>注意使用 yolo其实并不符合 hackthon的目标，因为没什么必要。大会的OpenRA提供战争迷雾和 query类别的 api.合理使用 api就可以做到感知游戏状态和信息。这里使用 yolo主要是为了有趣，并且想实现在没有 API支持的情况下，也可以尝试自动完成对战（当然键盘和鼠标的模拟会很繁琐）。</p>
+<h2 id="yolo小知识"><a href="#yolo小知识" class="headerlink" title="yolo小知识"></a>yolo小知识</h2><p>这里需要知道一个 yolo的小知识，迁移训练：迁移训练指的是 yolo本身有大概五十个目标识别的模型，现在让 yolo忘记自己本来认识的 五十个目标，重新学习 10 个和红色警戒有关的目标。这就是迁移训练（学习）。</p>
+<h2 id="三个步骤"><a href="#三个步骤" class="headerlink" title="三个步骤"></a>三个步骤</h2><p>使用 yolo来识别红色警戒的目标需要三个步骤，就像把大象塞进冰箱需要三步一样</p>
+<ul>
+<li>dataset的准备</li>
+<li>迁移训练</li>
+<li>识别</li>
+</ul>
+<p>训练需要先进行数据的准备，这一部肯定是整个过程中最麻烦的一部。有很多标注用的工具，但是我们用无敌的 <a target="_blank" rel="noopener" href="https://roboflow.com/">https://roboflow.com/</a> </p>
+<p>labelimg也可以。</p>
+<h3 id="数据集的准备"><a href="#数据集的准备" class="headerlink" title="数据集的准备"></a>数据集的准备</h3><p>先打开录制，然后开一局红色警戒录下来。需要吐槽的是现在openra的字体相当小，打一局非常费眼睛对身体不利，为了身体健康引入 yolo是很有必要的，人最好一点不看就能打败对手是最好的。</p>
+<p>注意录制好的录像可以使用 handbrake压制一下，不然太大，而且 OPENRA分辨率相当低，压缩到很小就行，不是高清 4k游戏没必要。一局最好只选 1 个敌人，在 15 分钟之内 rush搞定。这样数据比较小，对身体也好。</p>
+<p>然后把压制好的数据上传到 roboflow, roboflow可以把视频裁成一帧一帧的图片。为了身体健康，最好少一点数据大概一百五十张差不多了。然后开始无敌的标注，注意标注数据不要太粗心大意，尽量贴合好目标的边框不要超出物体本身，否则会影响训练结果。实际上是 rush局，单位也不会特别多，标注个 50 来张差不多了，很累。当然数据是越多越好，只是在这里没必要，浪费眼睛耐久度。</p>
+<p>标注好数据后把数据分成三个数据集</p>
+<ul>
+<li>train</li>
+<li>test</li>
+<li>valid</li>
+</ul>
+<p>训练集，验证集，测试集。大概 6:3:1 的比例即可。图片多可以稍微调一调比例。和平息考试一个道理，多训练。所以训练集最多。做好数据集之后，从 roboflow 下载回来。此时很可能已经花费了数个小时。数据标注真的苦工😭</p>
+<h3 id="训练准备"><a href="#训练准备" class="headerlink" title="训练准备"></a>训练准备</h3><p>准备好数据集之后就可以开始训练了。阅读 <a target="_blank" rel="noopener" href="https://docs.ultralytics.com/zh/quickstart/">https://docs.ultralytics.com/zh/quickstart/</a></p>
+<p>可以启动一个 python的虚拟环境, 我们使用 uv</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">uv venv</span><br><span class="line">source .venv/bin/activate</span><br><span class="line"></span><br><span class="line"># Install other core dependencies</span><br><span class="line">uv pip install torch torchvision numpy matplotlib polars pyyaml pillow psutil requests scipy seaborn ultralytics-thop</span><br><span class="line"></span><br><span class="line"># Install headless OpenCV instead of the default</span><br><span class="line">uv pip install opencv-python-headless</span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意启动虚拟环境 并且激活他 然后再 uv中安装这些必要的依赖，这个可以在 ultralytics的手动安装中找到。理论上来说，使用 docker是最好的方案，但是我的电脑是 mac的 docker无法使用mps加速 </p>
+<p>具体可以看 </p>
+<p><a target="_blank" rel="noopener" href="https://docs.ultralytics.com/modes/train/#idle-gpu-training">https://docs.ultralytics.com/modes/train/#idle-gpu-training</a></p>
+<p>yolo训练使用起来非常简单</p>
+<p>实例代码是这样的</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from ultralytics import YOLO</span><br><span class="line"></span><br><span class="line"># Load a model</span><br><span class="line">model = YOLO("yolo11n.pt")  # load a pretrained model (recommended for training)</span><br><span class="line"></span><br><span class="line"># Train the model with 2 GPUs</span><br><span class="line">results = model.train(data="coco8.yaml", epochs=100, imgsz=640, device=[0, 1])</span><br><span class="line"></span><br><span class="line"># Train the model with the two most idle GPUs</span><br><span class="line">results = model.train(data="coco8.yaml", epochs=100, imgsz=640, device=[-1, -1])</span><br></pre></td></tr></tbody></table></figure>
+
+<p>主要有三部分 加载模型 加载数据集 然后开始训练。我们的模型是 v8n，配置的 yaml参数甚至是 roboflow给好的。我会在后面列出 github的地址。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">just train </span><br></pre></td></tr></tbody></table></figure>
+
+<p>因为数据比较简单在我的 m2mx 上，使用 mps加速，训练 200 轮大概也就 14 分钟。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size</span><br><span class="line">198/200      2.27G      0.521     0.4953     0.8555         13        640: 100% ━━━━━━━━━━━━ 6/6 2.6it/s 2.3s</span><br><span class="line">             Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 2.0it/s 0.5s</span><br><span class="line">               all          8         60      0.982      0.981      0.977       0.91</span><br><span class="line"></span><br><span class="line">  Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size</span><br><span class="line">199/200      2.28G     0.5229      0.558     0.8557          8        640: 100% ━━━━━━━━━━━━ 6/6 2.8it/s 2.2s</span><br><span class="line">             Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 6.7it/s 0.1s</span><br><span class="line">               all          8         60      0.982      0.981      0.977       0.91</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>训练起来大概就是上面的样式</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Validating runs/red-alert_20250901_001914/weights/best.pt...</span><br><span class="line">Ultralytics 8.3.190 🚀 Python-3.13.5 torch-2.8.0 MPS (Apple M2 Max)</span><br><span class="line">Model summary (fused): 72 layers, 3,007,013 parameters, 0 gradients, 8.1 GFLOPs</span><br><span class="line">                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 0.31it/s 3.2s</span><br><span class="line">                   all          8         60      0.984      0.981      0.977      0.911</span><br><span class="line">              bingying          6          6      0.993          1      0.995      0.874</span><br><span class="line">             dianchang          8         27      0.995          1      0.995      0.895</span><br><span class="line">                  jidi          8          9      0.982      0.889      0.888      0.844</span><br><span class="line">          jungongchang          6          6      0.974          1      0.995      0.995</span><br><span class="line">            kuangchang          6          6      0.976          1      0.995      0.912</span><br><span class="line">                 leida          6          6      0.986          1      0.995      0.944</span><br><span class="line">Speed: 0.4ms preprocess, 95.0ms inference, 0.0ms loss, 67.5ms postprocess per image</span><br><span class="line">Results saved to runs/red-alert_20250901_001914</span><br><span class="line">✅ 训练完成！</span><br><span class="line">⏱️ 用时: 0小时 14分钟 49秒</span><br><span class="line">💾 模型保存位置: runs/red-alert_20250901_001914/weights/</span><br><span class="line">📊 最佳模型: runs/red-alert_20250901_001914/weights/best.pt</span><br><span class="line">📈 TensorBoard: tensorboard --logdir runs</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果就是这样的</p>
+<h3 id="识别"><a href="#识别" class="headerlink" title="识别"></a>识别</h3><p>识别也参考文档即可  如果觉得麻烦 可以直接在目录下</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yolo predict model=runs/red-alert_20250901_001914/weights/best.pt source=/Users/xxx/Desktop/openra.mp4 show=true conf=0.25</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果不行  注意路径。实际效果如下</p>
+<p><img src="https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/img/Xnip%20Helper%202025-09-01%2010.31.09.png"></p>
+<p>也就三步，就可以识别出 OpenRA中的物体了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/yolo-openra/" rel="tag"># yolo openra</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/64160/" rel="prev" title="Logout Issue">
+      <i class="fa fa-chevron-left"></i> Logout Issue
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#YOLO-for-OpenRA"><span class="nav-number">1.</span> <span class="nav-text">YOLO for OpenRA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-yolo"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 yolo?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E6%96%87%E7%AB%A0%E7%9A%84%E8%B5%B7%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">阅读文章的起点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yolo%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">yolo小知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">三个步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-number">1.4.1.</span> <span class="nav-text">数据集的准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E5%87%86%E5%A4%87"><span class="nav-number">1.4.2.</span> <span class="nav-text">训练准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%86%E5%88%AB"><span class="nav-number">1.4.3.</span> <span class="nav-text">识别</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="TigerInYourDream"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">TigerInYourDream</p>
+  <div class="site-description" itemprop="description">每一篇文章都是一种进步，每一句感慨都是一次思考</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TigerInYourDream</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
