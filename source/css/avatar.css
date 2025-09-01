@@ -1,0 +1,41 @@
+/* 导航栏头像圆形样式 */
+#nav .site-page img.siteIcon {
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover;
+}
+
+/* 导航栏 logo 圆形样式 */
+#nav #site-title img,
+#nav .nav-site-title img {
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+/* 侧边栏头像圆形样式 */
+#aside-content .avatar-img img {
+  border-radius: 50% !important;
+  object-fit: cover;
+}
+
+/* 评论区头像圆形样式 */
+.tk-avatar img,
+.comment-avatar img {
+  border-radius: 50% !important;
+}
+
+/* 友链页面头像圆形样式 */
+.flink-list .flink-item-icon img {
+  border-radius: 50% !important;
+  object-fit: cover;
+}
+
+/* 关于页面头像圆形样式 */
+#about-page .author-avatar img {
+  border-radius: 50% !important;
+  object-fit: cover;
+}

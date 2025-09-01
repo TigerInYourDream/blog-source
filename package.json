@@ -22,15 +22,18 @@
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-json-content": "^4.2.3",
+    "hexo-generator-search": "^2.4.3",
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-helper-qrcode": "^1.0.2",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-less": "^4.0.0",
     "hexo-renderer-marked": "^7.0.1",
+    "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "^0.6.2",
+    "hexo-theme-butterfly": "^5.4.3",
     "hexo-theme-next": "^8.24.1",
     "urix": "^0.1.0"
   }

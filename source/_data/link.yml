@@ -1,0 +1,8 @@
+- class_name: 技术博客
+  class_desc: 优秀的技术博客
+  link_list:
+    - name: imzlp's Blog
+      link: https://imzlp.com/
+      avatar: https://imzlp.com/favicon.ico
+      descr: 专注于游戏开发、图形学和技术分享的优秀博客
+      siteshot: https://imzlp.com/
