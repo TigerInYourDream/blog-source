@@ -2,7 +2,7 @@
 title: Yolo for OpenRA
 abbrlink: 46137
 date: 2025-09-01 10:51:58
-tags: yolo
+tags: yolo openra
 ---
 
 # YOLO for OpenRA
