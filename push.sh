@@ -1,7 +1,16 @@
 #!/bin/bash
-echo "push blog source to github"
-git pull
+echo "推送博客源码到 GitHub"
+
+# 确保我们在最新的状态
+git pull origin source
+
+# 添加所有更改
 git add .
-git commit -s -m "upd |> commit soure to github"
-git push origin master
-echo "push blog source to github end"
+
+# 提交更改
+git commit -s -m "upd |> commit source to github"
+
+# 推送到 source 分支
+git push origin source
+
+echo "博客源码推送完成"
