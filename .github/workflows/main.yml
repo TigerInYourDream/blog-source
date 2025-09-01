@@ -40,6 +40,7 @@ jobs:
         run: |
           hexo clean
           hexo g
+          touch public/.nojekyll  # 在生成的站点目录中创建 .nojekyll 文件
           echo "build blog successful"
       - name: Deploy Blog
         env:
