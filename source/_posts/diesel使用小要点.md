@@ -1,10 +1,11 @@
 ---
 title: diesel使用小要点
-date: 2021-10-14 18:39:14
 categories:
   - 技术笔记
 tags:
   - rust
+abbrlink: 35993
+date: 2021-10-14 18:39:14
 ---
 
 # diesel使用的一些小知识点

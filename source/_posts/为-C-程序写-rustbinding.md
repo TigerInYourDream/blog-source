@@ -1,12 +1,12 @@
 ---
-
 title: 为 C++程序写 rustbinding
-date: 2024-08-12 23:24:49
 categories:
   - rust
 tags:
   - c++
   - bingen
+abbrlink: 12714
+date: 2024-08-12 23:24:49
 ---
 
 # 为 C++程序写 rustbinding

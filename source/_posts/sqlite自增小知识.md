@@ -1,10 +1,11 @@
 ---
 title: sqlite自增小知识
-date: 2021-01-20 10:06:54
 categories:
   - 技术笔记
 tags:
   - 数据库
+abbrlink: 48571
+date: 2021-01-20 10:06:54
 ---
 
 # Sqlite自增字段

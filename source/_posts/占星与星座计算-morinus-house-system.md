@@ -1,10 +1,11 @@
 ---
 title: 占星与星座计算 morinus house system
-date: 2021-08-10 22:37:53
 categories:
   - 天文学
 tags:
   - 占星
+abbrlink: 26767
+date: 2021-08-10 22:37:53
 ---
 
 # 占星与星座计算 morinus house system

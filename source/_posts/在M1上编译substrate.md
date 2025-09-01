@@ -1,11 +1,12 @@
 ---
 title: 在M1上编译substrate
-date: 2021-03-11 10:01:02
 categories:
   - 技术笔记
 tags:
   - 区块链
   - substrate
+abbrlink: 31576
+date: 2021-03-11 10:01:02
 ---
 
 之前已经在x86的mac电脑上编译过substrate，按照官方指南上的操作就可以正常编译。但是在新款m1电脑上并没有编译通过，现在重新尝试在m1上编译substrate。

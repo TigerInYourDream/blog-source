@@ -1,12 +1,13 @@
 ---
 title: 比特币pow难度验证
-date: 2021-06-19 15:58:46
 categories:
   - 技术笔记
 tags:
   - 区块链
   - 比特币
   - POW
+abbrlink: 58506
+date: 2021-06-19 15:58:46
 ---
 
 # 比特币pow难度验证

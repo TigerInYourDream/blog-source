@@ -1,9 +1,10 @@
 ---
 title: sonala合约
-date: 2024-06-12 20:00:49
 tags:
   - 合约
   - solana
+abbrlink: 43396
+date: 2024-06-12 20:00:49
 ---
 
 # solana合约学习

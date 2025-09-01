@@ -1,0 +1,6 @@
+{
+  "repository": "TigerInYourDream/blog-source",
+  "branch": "master",
+  "message": "Site updated: {{ now(\"YYYY-MM-DD HH:mm:ss\") }}",
+  "token": ""
+}

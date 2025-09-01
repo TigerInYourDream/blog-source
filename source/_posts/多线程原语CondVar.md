@@ -1,11 +1,12 @@
 ---
 title: 多线程原语ConVar
-date: 2020-12-24 16:33:46
 categories:
   - 技术笔记
 tags:
   - rust
   - 多线程
+abbrlink: 63616
+date: 2020-12-24 16:33:46
 ---
 
 # 多线程原语CondVar

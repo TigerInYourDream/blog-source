@@ -1,7 +1,8 @@
 ---
 title: Logout Issue
-date: 2025-07-31 10:22:47
 tags: Rubric
+abbrlink: 64160
+date: 2025-07-31 10:22:47
 ---
 
 # Logout Issues
@@ -11,7 +12,7 @@ tags: Rubric
 Before describing the logout issues, let's define two concepts:
 
 - logout: Clicking the logout button to exit robrix by interacting with matrix
-- shut down: Clicking x to exit the robrix processS
+- shut down: Clicking x to exit the robrix process
 
 ### The Earliest 'Dead-Pool' Issue in Logout
 
