@@ -1611,6 +1611,11 @@ hexo-symbols-count-time@^0.6.2:
   resolved "https://registry.npmjs.org/hexo-symbols-count-time/-/hexo-symbols-count-time-0.6.2.tgz"
   integrity sha512-E/LzwPVv+0+r4JrFlIoC+NPw5C337vJGR/lITMLrG4vUFldKMsc9UUwFYxHPr9K8duAKxeM0Hyp2/WaE8rEx+A==
 
+hexo-theme-next@^8.24.1:
+  version "8.24.1"
+  resolved "https://registry.npmjs.org/hexo-theme-next/-/hexo-theme-next-8.24.1.tgz"
+  integrity sha512-DTa+umV5XTDa8XEtiLkaKDzgHqlnrj5HXi+6auI690TJdbIULm9sgaUQFkriDr2jeeGQDUV4ptsvgTTRaZjiGw==
+
 hexo-util@^0.6.3:
   version "0.6.3"
   resolved "https://registry.npmjs.org/hexo-util/-/hexo-util-0.6.3.tgz"
