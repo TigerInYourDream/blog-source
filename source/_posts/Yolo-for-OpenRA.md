@@ -11,7 +11,7 @@ tags: yolo openra
 
 ## 什么是 yolo?
 
-实际情况是我也不懂。具体参考 https://www.ultralytics.com/.   大概是深度学习和计算机视觉相关的库。
+实际情况是我也不懂。具体参考 https://www.ultralytics.com/. 大概是深度学习和计算机视觉相关的库。
 
 ## 阅读文章的起点
 
@@ -105,7 +105,7 @@ just train
 ```
 
 因为数据比较简单在我的 m2mx 上，使用 mps加速，训练 200 轮大概也就 14 分钟。
-
+运行之后大概是这样的输出 我做了部分截取
 ```
       Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
     198/200      2.27G      0.521     0.4953     0.8555         13        640: 100% ━━━━━━━━━━━━ 6/6 2.6it/s 2.3s
@@ -121,7 +121,7 @@ just train
 
 ```
 
-训练起来大概就是上面的样式
+然后输出结果如下
 
 ```
 Validating runs/red-alert_20250901_001914/weights/best.pt...
