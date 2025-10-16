@@ -68,7 +68,7 @@ default_top_img:
 
 # The banner image of index page
 # 热带海滩 - 椰树、沙滩与山景 (16:9 裁剪)
-index_img: https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&h=1080&fit=crop&q=80
+index_img: https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=1920&h=1080&fit=crop&q=80
 
 # The banner image of archive page
 archive_img:
