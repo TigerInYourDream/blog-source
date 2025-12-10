@@ -1,5 +1,6 @@
 ---
 title: GitHub工作流
+abbrlink: 53869
 date: 2025-11-28 19:46:34
 tags:
 ---

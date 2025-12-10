@@ -1,7 +1,8 @@
 ---
 title: 使用 Migration 管理数据库
+tags: '-sql'
+abbrlink: 46432
 date: 2025-12-05 22:55:29
-tags: -sql
 ---
 
  # 使用 Migration 管理数据库

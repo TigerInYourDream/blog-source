@@ -1,0 +1,692 @@
+/* ========================================
+   trudy.computer 风格 - 纯深蓝 Navy Blue
+   ======================================== */
+
+/* 配色变量 - 基于 #000080 Navy Blue */
+:root {
+  --navy: #000080;
+  --navy-dark: #000060;
+  --navy-light: #0000a0;
+  --white: #ffffff;
+  --white-soft: rgba(255, 255, 255, 0.9);
+  --white-muted: rgba(255, 255, 255, 0.7);
+  --default-bg-color: #f8fafc !important;
+}
+
+/* ========================================
+   首页顶部 Hero 区域
+   ======================================== */
+
+#page-header {
+  background: var(--navy) !important;
+  background-image: none !important;
+}
+
+#page-header.full_page {
+  background: var(--navy) !important;
+  background-image: none !important;
+}
+
+#page-header.not-top-img {
+  background: var(--navy) !important;
+  height: 60vh !important;
+  min-height: 400px !important;
+}
+
+#page-header #site-background,
+#page-header .bg {
+  display: none !important;
+}
+
+#page-header::before,
+#page-header .mask {
+  background: transparent !important;
+  display: none !important;
+}
+
+#page-header.not-top-img #site-info {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#page-header #site-info,
+#page-header .site-info {
+  text-shadow: none;
+}
+
+#page-header .site-title,
+#page-header #site-title,
+#page-header .title-seo {
+  color: var(--white) !important;
+  font-weight: 700;
+  text-shadow: none !important;
+  font-size: 2.5rem;
+}
+
+#page-header .site-subtitle,
+#page-header #subtitle {
+  color: var(--white-soft) !important;
+  text-shadow: none !important;
+}
+
+#page-header .scroll-down-effects,
+#page-header #scroll-down {
+  color: var(--white-muted) !important;
+}
+
+#page-header #nav {
+  background: transparent !important;
+}
+
+#page-header #nav a,
+#page-header #nav span {
+  color: var(--white) !important;
+}
+
+/* ========================================
+   导航栏
+   ======================================== */
+
+#nav.fixed {
+  background: var(--navy) !important;
+}
+
+#nav.fixed a,
+#nav.fixed span,
+#nav.fixed .site-name {
+  color: var(--white) !important;
+}
+
+/* ========================================
+   按钮和链接
+   ======================================== */
+
+/* 分页按钮 */
+#pagination .page-number.current,
+#pagination .page-number:hover {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+#pagination .page-number {
+  border-color: var(--navy) !important;
+  color: var(--navy) !important;
+}
+
+/* 返回顶部按钮 */
+#go-up {
+  background: var(--navy) !important;
+}
+
+#go-up:hover {
+  background: var(--navy-light) !important;
+}
+
+/* 侧边栏 Follow Me 按钮 */
+#card-info-btn {
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+#card-info-btn:hover {
+  background: var(--navy-light) !important;
+  border-color: var(--navy-light) !important;
+  color: var(--white) !important;
+}
+
+#card-info-btn i,
+#card-info-btn span {
+  color: var(--white) !important;
+}
+
+/* ========================================
+   文章卡片和链接
+   ======================================== */
+
+.recent-post-item .article-title:hover {
+  color: var(--navy) !important;
+}
+
+.article-meta a:hover {
+  color: var(--navy-light) !important;
+}
+
+a {
+  color: var(--navy) !important;
+}
+
+a:hover {
+  color: var(--navy-light) !important;
+}
+
+/* ========================================
+   侧边栏
+   ======================================== */
+
+.card-widget .item-headline i {
+  color: var(--navy) !important;
+}
+
+.card-tag-cloud a:hover {
+  color: var(--navy-light) !important;
+}
+
+.card-category-list-link:hover .card-category-list-name {
+  color: var(--navy-light) !important;
+}
+
+/* ========================================
+   文章页面
+   ======================================== */
+
+#post .post-title {
+  color: var(--navy) !important;
+}
+
+#card-toc .toc-link.active {
+  color: var(--white) !important;
+  background: var(--navy) !important;
+  border-left-color: var(--navy) !important;
+}
+
+#card-toc .toc-link:hover {
+  color: var(--navy-light) !important;
+}
+
+/* 目录项文字颜色 */
+#card-toc .toc-link {
+  color: #333 !important;
+}
+
+#card-toc .toc-link.active .toc-text {
+  color: var(--white) !important;
+}
+
+figure.highlight {
+  border-left: 4px solid var(--navy) !important;
+}
+
+blockquote {
+  border-left-color: var(--navy) !important;
+  background: rgba(0, 0, 128, 0.05) !important;
+}
+
+/* ========================================
+   页脚
+   ======================================== */
+
+#footer {
+  background: var(--navy-dark) !important;
+  color: var(--white-soft) !important;
+}
+
+#footer::before {
+  display: none !important;
+}
+
+#footer a {
+  color: var(--white-soft) !important;
+}
+
+#footer a:hover {
+  color: var(--white) !important;
+}
+
+#footer-wrap {
+  color: var(--white-muted);
+}
+
+/* ========================================
+   滚动条
+   ======================================== */
+
+::-webkit-scrollbar-thumb {
+  background: var(--navy) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--navy-light) !important;
+}
+
+/* ========================================
+   选中文字
+   ======================================== */
+
+::selection {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+::-moz-selection {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+/* ========================================
+   搜索框
+   ======================================== */
+
+#local-search-input {
+  border-color: var(--navy) !important;
+}
+
+#local-search-input:focus {
+  border-color: var(--navy-light) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 128, 0.2) !important;
+}
+
+/* ========================================
+   加载动画
+   ======================================== */
+
+#loading-box .loading-left-bg,
+#loading-box .loading-right-bg {
+  background: var(--navy) !important;
+}
+
+/* ========================================
+   文章页面 - 上一篇/下一篇导航
+   ======================================== */
+
+#pagination.pagination-post {
+  background: transparent !important;
+}
+
+/* 新版 Butterfly 的上一篇/下一篇和相关推荐 */
+.pagination-related,
+#pagination.pagination-post .pagination-related {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.pagination-related:hover,
+#pagination.pagination-post .pagination-related:hover {
+  border-color: var(--navy) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 128, 0.1) !important;
+}
+
+.pagination-related .cover,
+#pagination.pagination-post .pagination-related .cover {
+  background: #f8fafc !important;
+  display: none !important;
+}
+
+.pagination-related .info-item-1,
+#pagination.pagination-post .pagination-related .info-item-1 {
+  color: #64748b !important;
+}
+
+.pagination-related .info-item-2,
+#pagination.pagination-post .pagination-related .info-item-2 {
+  color: var(--navy) !important;
+}
+
+/* 相关推荐的6个卡片 */
+.relatedPosts-item,
+.relatedPosts-list .pagination-related,
+.related-posts-item {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.relatedPosts-item:hover,
+.relatedPosts-list .pagination-related:hover,
+.related-posts-item:hover {
+  border-color: var(--navy) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 128, 0.1) !important;
+}
+
+.relatedPosts-item .cover,
+.related-posts-item .cover {
+  background: transparent !important;
+}
+
+/* 旧版兼容 */
+#pagination.pagination-post .prev-post,
+#pagination.pagination-post .next-post {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+#pagination.pagination-post .prev-post:hover,
+#pagination.pagination-post .next-post:hover {
+  border-color: var(--navy) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 128, 0.1) !important;
+}
+
+#pagination.pagination-post .prev-post .pagination-info,
+#pagination.pagination-post .next-post .pagination-info {
+  color: var(--navy) !important;
+}
+
+#pagination.pagination-post .prev-post .label,
+#pagination.pagination-post .next-post .label {
+  color: #64748b !important;
+}
+
+/* ========================================
+   相关推荐卡片
+   ======================================== */
+
+.relatedPosts-list > div,
+.relatedPosts .relatedPosts-item {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.relatedPosts-list > div:hover,
+.relatedPosts .relatedPosts-item:hover {
+  border-color: var(--navy) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 128, 0.1) !important;
+}
+
+.relatedPosts .relatedPosts-item .content {
+  color: var(--navy) !important;
+}
+
+.relatedPosts .relatedPosts-item .date {
+  color: #64748b !important;
+}
+
+/* ========================================
+   文章标签
+   ======================================== */
+
+#article-container .tag-plugin.tag-link,
+.article-sort-item-tags a,
+.tag-cloud-list a,
+#post-meta .post-meta-item a,
+a.article-sort-item-tags {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  border-color: var(--navy) !important;
+}
+
+a.tag-link,
+span.tag-link {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+/* 文章底部标签 */
+#post .post-tag a {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+#post .post-tag a:hover {
+  background: var(--navy-light) !important;
+}
+
+/* ========================================
+   分享按钮
+   ======================================== */
+
+.social-share .social-share-icon {
+  border-color: var(--navy) !important;
+  color: var(--navy) !important;
+}
+
+.social-share .social-share-icon:hover {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+
+/* ========================================
+   文章页顶部标签样式
+   ======================================== */
+
+#post-info .post-tag a,
+.post-meta-label,
+.article-meta__tags a {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: var(--white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 文章列表中的标签 */
+.article-meta a[href*="/tags/"] {
+  color: var(--navy) !important;
+}
+
+/* ========================================
+   暗色主题配色方案
+   深色背景 + 柔和蓝色点缀
+   ======================================== */
+
+[data-theme="dark"] {
+  --dark-bg: #0d1117;           /* GitHub 暗色背景 */
+  --dark-card: #161b22;         /* 卡片背景 */
+  --dark-border: #30363d;       /* 边框颜色 */
+  --dark-blue: #58a6ff;         /* 主要蓝色（亮） */
+  --dark-blue-dim: #388bfd;     /* 次要蓝色 */
+  --dark-text: #c9d1d9;         /* 主要文字 */
+  --dark-text-secondary: #8b949e; /* 次要文字 */
+}
+
+/* 暗色主题 - Hero 区域 */
+[data-theme="dark"] #page-header {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+  background-image: none !important;
+}
+
+[data-theme="dark"] #page-header.full_page,
+[data-theme="dark"] #page-header.not-top-img {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+}
+
+[data-theme="dark"] #page-header .site-title,
+[data-theme="dark"] #page-header #site-title,
+[data-theme="dark"] #page-header .title-seo {
+  color: var(--dark-blue) !important;
+}
+
+[data-theme="dark"] #page-header .site-subtitle,
+[data-theme="dark"] #page-header #subtitle {
+  color: var(--dark-text) !important;
+}
+
+/* 暗色主题 - 导航栏 */
+[data-theme="dark"] #nav.fixed {
+  background: rgba(13, 17, 23, 0.95) !important;
+  border-bottom: 1px solid var(--dark-border) !important;
+}
+
+[data-theme="dark"] #page-header #nav a,
+[data-theme="dark"] #page-header #nav span {
+  color: var(--dark-text) !important;
+}
+
+/* 暗色主题 - 链接颜色 */
+[data-theme="dark"] a {
+  color: var(--dark-blue) !important;
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--dark-blue-dim) !important;
+}
+
+/* 暗色主题 - 按钮 */
+[data-theme="dark"] #card-info-btn {
+  background: transparent !important;
+  border: 1px solid var(--dark-blue) !important;
+  color: var(--dark-blue) !important;
+}
+
+[data-theme="dark"] #card-info-btn:hover {
+  background: var(--dark-blue) !important;
+  color: #0d1117 !important;
+}
+
+[data-theme="dark"] #card-info-btn i,
+[data-theme="dark"] #card-info-btn span {
+  color: inherit !important;
+}
+
+/* 暗色主题 - 分页 */
+[data-theme="dark"] #pagination .page-number.current,
+[data-theme="dark"] #pagination .page-number:hover {
+  background: var(--dark-blue) !important;
+  color: #0d1117 !important;
+}
+
+[data-theme="dark"] #pagination .page-number {
+  border-color: var(--dark-border) !important;
+  color: var(--dark-text) !important;
+}
+
+/* 暗色主题 - 文章标签 */
+[data-theme="dark"] #post .post-tag a {
+  background: transparent !important;
+  border: 1px solid var(--dark-blue) !important;
+  color: var(--dark-blue) !important;
+}
+
+[data-theme="dark"] #post .post-tag a:hover {
+  background: var(--dark-blue) !important;
+  color: #0d1117 !important;
+}
+
+/* 暗色主题 - 上一篇/下一篇 */
+[data-theme="dark"] #pagination.pagination-post .prev-post,
+[data-theme="dark"] #pagination.pagination-post .next-post,
+[data-theme="dark"] #pagination.pagination-post .pagination-related {
+  background: var(--dark-card) !important;
+  border: 1px solid var(--dark-border) !important;
+}
+
+[data-theme="dark"] #pagination.pagination-post .prev-post .pagination-info,
+[data-theme="dark"] #pagination.pagination-post .next-post .pagination-info,
+[data-theme="dark"] #pagination.pagination-post .pagination-related .info-item-2 {
+  color: var(--dark-text) !important;
+}
+
+[data-theme="dark"] #pagination.pagination-post .pagination-related .info-item-1 {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] #pagination.pagination-post .pagination-related .cover {
+  display: none !important;
+}
+
+/* 暗色主题 - 相关推荐 */
+[data-theme="dark"] .relatedPosts-list > div,
+[data-theme="dark"] .relatedPosts .relatedPosts-item,
+[data-theme="dark"] .pagination-related,
+[data-theme="dark"] .relatedPosts-item {
+  background: var(--dark-card) !important;
+  border: 1px solid var(--dark-border) !important;
+}
+
+[data-theme="dark"] .relatedPosts .relatedPosts-item .content,
+[data-theme="dark"] .pagination-related .info-item-2 {
+  color: var(--dark-text) !important;
+}
+
+[data-theme="dark"] .relatedPosts .relatedPosts-item .date,
+[data-theme="dark"] .pagination-related .info-item-1 {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .pagination-related .cover {
+  background: var(--dark-card) !important;
+}
+
+/* 暗色主题 - 侧边栏 */
+[data-theme="dark"] .card-widget .item-headline i {
+  color: var(--dark-blue) !important;
+}
+
+[data-theme="dark"] .card-widget {
+  border: 1px solid var(--dark-border) !important;
+}
+
+/* 暗色主题 - 目录 */
+[data-theme="dark"] #card-toc .toc-link {
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] #card-toc .toc-link.active {
+  color: var(--dark-blue) !important;
+  background: transparent !important;
+  border-left: 2px solid var(--dark-blue) !important;
+}
+
+[data-theme="dark"] #card-toc .toc-link.active .toc-text {
+  color: var(--dark-blue) !important;
+}
+
+/* 暗色主题 - 代码块 */
+[data-theme="dark"] figure.highlight {
+  border-left: 4px solid var(--dark-blue) !important;
+}
+
+/* 暗色主题 - 引用块 */
+[data-theme="dark"] blockquote {
+  border-left-color: var(--dark-blue) !important;
+  background: rgba(88, 166, 255, 0.1) !important;
+}
+
+/* 暗色主题 - 滚动条 */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--dark-border) !important;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-blue-dim) !important;
+}
+
+/* 暗色主题 - 分享按钮 */
+[data-theme="dark"] .social-share .social-share-icon {
+  border-color: var(--dark-border) !important;
+  color: var(--dark-text-secondary) !important;
+}
+
+[data-theme="dark"] .social-share .social-share-icon:hover {
+  border-color: var(--dark-blue) !important;
+  color: var(--dark-blue) !important;
+}
+
+/* 暗色主题 - 文章标题 */
+[data-theme="dark"] #post .post-title {
+  color: var(--dark-text) !important;
+}
+
+[data-theme="dark"] .recent-post-item .article-title {
+  color: var(--dark-text) !important;
+}
+
+[data-theme="dark"] .recent-post-item .article-title:hover {
+  color: var(--dark-blue) !important;
+}
+
+/* 暗色主题 - 页脚 */
+[data-theme="dark"] #footer {
+  background: var(--dark-bg) !important;
+  border-top: 1px solid var(--dark-border) !important;
+}
+
+[data-theme="dark"] #footer a {
+  color: var(--dark-blue) !important;
+}
+
+/* 暗色主题 - 返回顶部 */
+[data-theme="dark"] #go-up {
+  background: var(--dark-card) !important;
+  border: 1px solid var(--dark-border) !important;
+  color: var(--dark-text) !important;
+}
+
+[data-theme="dark"] #go-up:hover {
+  border-color: var(--dark-blue) !important;
+  color: var(--dark-blue) !important;
+}
