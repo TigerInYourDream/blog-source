@@ -5,57 +5,57 @@ tags:
  - open-claw
 ---
 
-# 为moly-ai实现openclaw支持
+# 为 Moly AI 实现 OpenClaw 支持
 
-Moly-ai [https://github.com/moly-ai/moly-ai] 是一个使用rust编写的LLM客户端，底层技术基于makepad。目前openclaw大火，并且支持大量主流的聊天工具接入。既然如此，自然也可以接入moly-ai.现在已经给原始的仓库提交了pr。这篇文章就用来描述：”如何为moly-ai实现openclaw支持“。
+Moly AI（[GitHub](https://github.com/moly-ai/moly-ai)）是一个使用 Rust 编写的 LLM 客户端，底层技术基于 Makepad。目前 OpenClaw 大火，并且支持大量主流的聊天工具接入。既然如此，自然也可以接入 Moly AI。现在已经给原始的仓库提交了 PR。这篇文章就用来描述："如何为 Moly AI 实现 OpenClaw 支持"。
 
-这篇文章将分为三个部分
+这篇文章将分为三个部分：
 
-1. 如何配置openclaw
-2. 如何在moly-ai中配置使用openclaw
-3. 为molyai支持openclaw的技术原理。
+1. 如何配置 OpenClaw
+2. 如何在 Moly AI 中配置使用 OpenClaw
+3. 为 Moly AI 支持 OpenClaw 的技术原理
 
-## 如何配置openclaw
+## 如何配置 OpenClaw
 
-Open claw 已经有非常详细的安装文档了https://docs.openclaw.ai/start/wizard 所有的细节均可以参考openclaw的官方文档。但我还是会带着大家过一遍你需要下面三个前置条件
+OpenClaw 已经有非常详细的安装文档了：https://docs.openclaw.ai/start/wizard ，所有的细节均可以参考 OpenClaw 的官方文档。但我还是会带着大家过一遍，你需要下面三个前置条件：
 
 1. 需要会阅读基本文档
-
-2. 需要与准备好一个deepseek账号。
-
+2. 需要准备好一个 DeepSeek 账号
 3. 需要通畅的网络
 
-	
+下面是安装步骤：
 
-	下面是安装步骤
+1. 命令行安装
 
-	1. 命令行安装
-
-```
+```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
 ```
 
 2. 注意安装好之后会有一个风险提示，请选择同意
-3. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.09.27%402x.png)
-4. 然后会自然进入配置模式，选择第一个  QuickStart
-5. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.13.01%402x.png)
-6. 接下来进入到模型配置，因为我们要用deepseek, 所以选择skipall
-7. 然后选择provider 供应商， 因为deepseek不再里面，随便选（跳过，后续再改）
-8. ![CleanShot 2026-02-05 at 10.13.38@2x](/Users/zhaoyue/Library/Application Support/CleanShot/media/media_Ki2kJAqJ90/CleanShot 2026-02-05 at 10.13.38@2x.png)
-9. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.15.40%402x.png)
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.09.27%402x.png)
 
-9. 聊天软件配置，都是telegram discord之类的，我们继续跳过
+3. 然后会自然进入配置模式，选择第一个 QuickStart
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.13.01%402x.png)
 
-10. skill包，和本地目标无关。继续跳过
+4. 接下来进入到模型配置，因为我们要用 DeepSeek，所以选择 Skip All
 
-11. Hooks配置。可以选一个mem，对于本次使用不重要
-12. 然后就部署完成了。注意，我们的模型是随便选的，无法使用
+5. 然后选择 Provider 供应商，因为 DeepSeek 不在里面，随便选（跳过，后续再改）
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.15.40%402x.png)
 
-13. 接下来验证 openclaw --version
+6. 聊天软件配置，都是 Telegram、Discord 之类的，我们继续跳过
 
-然后进入最重要的配置阶段
+7. Skill 包，和本次目标无关，继续跳过
 
-```
+8. Hooks 配置，可以选一个 mem，对于本次使用不重要
+
+9. 然后就部署完成了。注意，我们的模型是随便选的，无法使用
+
+10. 接下来验证：`openclaw --version`
+
+然后进入最重要的配置阶段：
+
+```bash
+# 设置 DeepSeek 作为模型 Provider（注意替换为你自己的 API Key）
 openclaw config set 'models.providers.deepseek' --json '{
     "baseUrl": "https://api.deepseek.com/v1",
     "apiKey": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -66,55 +66,61 @@ openclaw config set 'models.providers.deepseek' --json '{
     ]
 }'
 
+# 设置模型模式为 merge
 openclaw config set models.mode merge
 
+# 设置默认模型
 openclaw models set deepseek/deepseek-chat
 
+# 启动 OpenClaw Gateway
 openclaw gateway --port 18789 --verbose
 
-// openclaw onboard --install-daemon
-
+# 打开 Dashboard
 openclaw dashboard
 ```
 
-上面是最重要的东西
+上面是最重要的配置命令：
 
-14. 使用第一个命令 open claw config set 命令设置模型 provider key等。**注意你要换成自己的deepseek** **key**
-15. 使用  openclaw config set models.mode merge  ， 设置models.mode 为merge
-16. 使用 openclaw models set deepseek/deepseek-chat  设置模型，注意其实第一个已经设置过了，但是这里还是需要再次设置。没有为什么，截止2026/2/4 需要这样
-17. 然后使用openclaw gateway --port 18789 --verbose  启动openclaw
-18. 接下来使用 openclaw dashbord  会弹出网页。当然你要是第一次弹出是什么内容都没有的,chat 为空
-19. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.23.22%402x.png)
+11. 使用 `openclaw config set` 命令设置模型 Provider、Key 等。**注意你要换成自己的 DeepSeek API Key**
+12. 使用 `openclaw config set models.mode merge` 设置 models.mode 为 merge
+13. 使用 `openclaw models set deepseek/deepseek-chat` 设置模型。注意其实第一个命令已经设置过了，但是这里还是需要再次设置。没有为什么，截止 2026/2/4 需要这样
+14. 然后使用 `openclaw gateway --port 18789 --verbose` 启动 OpenClaw Gateway
+15. 接下来使用 `openclaw dashboard` 会弹出网页。当然你要是第一次弹出是什么内容都没有的，Chat 为空
+    ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.23.22%402x.png)
+    ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.24.34%402x.png)
 
-20. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.24.34%402x.png)
+Dashboard 后面会出现的 Token 是很重要的。
 
-dashbord后面会出现这个token是 很重要的
+可以尝试和 OpenClaw 聊天，查看是否配置正常。
 
-可以尝试和openclaw chat，查看是否配置正常。
+## 如何配置 Moly AI
 
-## 如何配置moly-ai
+因为 Moly AI 还没有正式合并代码，请使用我的 PR：https://github.com/moly-ai/moly-ai/pull/630
 
-因为molyai 还没有正式合并代码，请使用我的pr https://github.com/moly-ai/moly-ai/pull/630
+如果不知道如何使用这个 PR，请用刚才配置好的 OpenClaw 来帮助你把代码拉到本地。
 
-如果不知道如何使用这个pr，请刚才配置好的openclaw来帮助你把代码拉倒本地。
+Moly AI 本身是需要使用 Rust 的，要想体验这个功能需要提前安装 Rust 工具链。你依然可以要求 OpenClaw 来帮助你安装 Rust 工具链。
 
-molyai本身是需要使用rust的，要想体验这个功能需要提前安装rust工具链。你依然可以要求openclaw来帮助你安装rust工具链
+接下来讲如何使用，以下操作的前提在于你已经安装好 Rust 工具链，并且下载好了这个 PR 的代码。
 
-接下来讲如何使用，一下操作的前提在于你已经安装好rust工具链，并且下载好了这个pr的代码。
+1. 直接 `cargo run`
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.34.09%402x.png)
 
-1. 直接cargo run
-2. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.34.09%402x.png)
+2. 依次点击 Moly Server → Go to Providers
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.35.58%402x.png)
 
-3. 直接依次点击molyserver gotoproviders
-4. ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.35.58%402x.png)
+3. 然后依次点击 OpenClaw，填入 OpenClaw Host。它是一个 WebSocket 地址，这是 OpenClaw 的 WebSocket 端点，端口号为上一步设定的端口 18789（如果你设定了其他端口，记得调整）
 
-5. 然后一次点击OpenClaw, 填入openclaw host, 它是一个websocket地址，这是openclaw的websocket端点，端口号为上一步设定的端口，18789 （如果你设定了其他端口，记得调整
-6. 设定apikey, 严格来说它并不是apikey, 是openclaw给出的token. 记得填写“如何配置openclaw”章节最后openclaw dashbord给出的token
-7. 依次打开4 5 处的开关代表启用。
-8. 实际上ai是配置在openclaw中的
-9. 注意看上面途中的1处，上面显示on,代表已经启用openclaw
-10. 接下来开启聊天![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.43.50%402x.png)
+4. 设定 API Key。严格来说它并不是 API Key，而是 OpenClaw 给出的 Token。记得填写"如何配置 OpenClaw"章节最后 OpenClaw Dashboard 给出的 Token
 
+5. 依次打开 4、5 处的开关代表启用
+
+6. 实际上 AI 是配置在 OpenClaw 中的
+
+7. 注意看上面图中的 1 处，上面显示 ON，代表已经启用 OpenClaw
+
+8. 接下来开启聊天
+   ![](https://image-bucket-for-alvin.oss-cn-beijing.aliyuncs.com/blog/CleanShot%202026-02-05%20at%2010.43.50%402x.png)
 
 ## OpenClaw Gateway 集成技术原理
 
@@ -416,4 +422,3 @@ OpenClaw 集成的核心设计原则：
 3. **跨平台兼容**：通过条件编译处理平台差异
 4. **健壮性**：完善的错误处理、超时机制、文本去重
 5. **可配置**：通过 JSON 配置文件管理 Provider 信息
-
